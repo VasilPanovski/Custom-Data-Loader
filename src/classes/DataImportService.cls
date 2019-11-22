@@ -46,17 +46,15 @@ public with sharing class DataImportService {
                 sObjectsToInsert.add(sObjectToInsert);
             }
 
-            /*
             // Process the records with Batch job if the records are more than max dml records per transaction
             if (sObjectsToInsert.size() >= 10000) {
                 if (!Test.isRunningTest()) {
                     BatchProcessor batchProcessor = new BatchProcessor(sObjectsToInsert);
-                    Id bId = Database.executeBatch(batchProcessor, 100);
-                    System.debug(bId);
+                    Database.executeBatch(batchProcessor, 2000);
                     return Constants.BATCH_PROCESSED_MESSAGE;
                 }
             }
-            */
+
             Integer failedRecordsCount = 0;
             Integer succeededRecordsCount = 0;
 

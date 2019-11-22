@@ -34,11 +34,19 @@ public with sharing class DataImportServiceTest {
         System.assertEquals(String.format(Constants.DATA_IMPORTED_MESSAGE_FORMAT, new List<Integer>{3, 1}), returnValue);
     }
 
-    /*
+
     @IsTest
     public static void testBatchDataImport() {
 
-        List<Object> objectsToInsert = getAccountObjects(10001);
+        List<Object> objectsToInsert = getAccountObjects(2001);
+        List<Object> batch2 = new List<Object>(objectsToInsert);
+        List<Object> batch3 = new List<Object>(objectsToInsert);
+        List<Object> batch4 = new List<Object>(objectsToInsert);
+        List<Object> batch5 = new List<Object>(objectsToInsert);
+        objectsToInsert.addAll(batch2);
+        objectsToInsert.addAll(batch3);
+        objectsToInsert.addAll(batch4);
+        objectsToInsert.addAll(batch5);
 
         String jsonObjects = JSON.serialize(objectsToInsert);
 
@@ -47,12 +55,11 @@ public with sharing class DataImportServiceTest {
         Test.stopTest();
 
         List<Account> accounts = [SELECT Id FROM Account];
-        List<Opportunity> opportunities = [SELECT Id FROM Opportunity];
 
-        System.assertEquals(10001, accounts.size());
+        System.assertEquals(10005, accounts.size());
         System.assertEquals(Constants.BATCH_PROCESSED_MESSAGE, returnValue);
     }
-    */
+
 
     private static List<Object> getAccountObjects(Integer objectCount) {
         List<Object> accObjects = new List<Object>();
